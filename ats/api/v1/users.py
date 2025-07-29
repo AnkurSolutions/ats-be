@@ -3,41 +3,19 @@ import asyncio
 from fastapi import APIRouter, HTTPException, Depends
 from ats.models.user import UserCreate, UserOut, UserUpdate
 from ats.services.user_service import (
-    create_user, get_user_by_id, update_user, delete_user, list_users
+    create_user, get_user_by_id, resolve_user_role, update_user, delete_user, list_users
 )
 from ats.db.session import get_odoo_env_dependency_async
+from ats.security.auth_dependency import require_role
 from concurrent.futures import ThreadPoolExecutor
 
 from odoo.api import Environment
-
-GROUP_ROLE_MAP = {
-    "base.group_system": "admin",
-    "hr.group_hr_user": "hr",
-    "hr_recruitment.group_hr_recruitment_user": "recruiter",
-    # Add your custom group XML ID for interviewer if any
-    "ats.group_interviewer": "interviewer"
-}
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-def resolve_user_role(env: Environment, user) -> str:
-    """
-    Resolve user role by checking user's groups' external XML IDs.
-    """
-    xml_ids = env['ir.model.data'].search([
-        ('model', '=', 'res.groups'),
-        ('res_id', 'in', user.groups_id.ids)
-    ])
-    for record in xml_ids:
-        if record.module and record.name:
-            full_id = f"{record.module}.{record.name}"
-            if full_id in GROUP_ROLE_MAP:
-                return GROUP_ROLE_MAP[full_id]
-    return "user"  # default fallback
-
-router = APIRouter(prefix="v1/users", tags=["Users"])
+router = APIRouter(prefix="/v1/users", tags=["Users"])
 
 # Thread pool for running sync Odoo service operations
 executor = ThreadPoolExecutor(max_workers=10)
@@ -52,7 +30,10 @@ async def run_in_thread(func, *args, **kwargs):
     return await loop.run_in_executor(executor, func, *args, **kwargs)
 
 @router.post("/", response_model=UserOut, summary="Create a new user")
-async def create_new_user(user_data: UserCreate):
+async def create_new_user(
+    user_data: UserCreate,
+    current_user = Depends(require_role("admin"))  # Only admin
+):
     """
     Create a new user in the system.
     
@@ -99,7 +80,9 @@ async def create_new_user(user_data: UserCreate):
         raise HTTPException(status_code=500, detail=f"Error creating user: {str(e)}")
 
 @router.get("/", response_model=list[UserOut], summary="Get all users")
-async def get_all_users():
+async def get_all_users(
+    current_user = Depends(require_role("admin", "hr"))  # Admin and HR
+):
     """
     Retrieve all users from the system.
     
@@ -142,7 +125,10 @@ async def get_all_users():
         raise HTTPException(status_code=500, detail=f"Error fetching users: {str(e)}")
 
 @router.get("/{user_id}", response_model=UserOut, summary="Get user by ID")
-async def get_user_by_id_endpoint(user_id: int):
+async def get_user_by_id_endpoint(
+    user_id: int,
+    current_user = Depends(require_role("admin", "hr"))
+):
     """
     Retrieve a specific user by their ID.
     
@@ -191,7 +177,11 @@ async def get_user_by_id_endpoint(user_id: int):
         raise HTTPException(status_code=500, detail=f"Error fetching user: {str(e)}")
 
 @router.put("/{user_id}", response_model=UserOut, summary="Update user")
-async def update_user_by_id(user_id: int, user_updates: UserUpdate):
+async def update_user_by_id(
+    user_id: int,
+    user_updates: UserUpdate,
+    current_user = Depends(require_role("admin"))  # Only admin
+):
     """
     Update a specific user's information.
     
@@ -243,7 +233,10 @@ async def update_user_by_id(user_id: int, user_updates: UserUpdate):
         raise HTTPException(status_code=500, detail=f"Error updating user: {str(e)}")
 
 @router.delete("/{user_id}", summary="Delete user")
-async def delete_user_by_id(user_id: int):
+async def delete_user_by_id(
+    user_id: int,
+    current_user = Depends(require_role("admin"))  # Only admin
+):
     """
     Delete a specific user from the system.
     

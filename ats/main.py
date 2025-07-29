@@ -22,7 +22,7 @@ app = FastAPI(title="ATS API")
 registry = Registry(odoo.tools.config["db_name"])
 
 # Your routers import
-from ats.api.v1 import users, jobs, applications, interviews, tests, offers
+from ats.api.v1 import users, jobs, applications, interviews, tests, offers, auth
 
 # Dependency to get a new Odoo env per request
 def get_env():
@@ -39,3 +39,4 @@ app.include_router(applications.router, dependencies=[Depends(get_env)])
 app.include_router(interviews.router, dependencies=[Depends(get_env)])
 app.include_router(tests.router, dependencies=[Depends(get_env)])
 app.include_router(offers.router, dependencies=[Depends(get_env)])
+app.include_router(auth.router, dependencies=[Depends(get_env)])
