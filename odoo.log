@@ -1,0 +1,47 @@
+2025-07-28 22:57:53,903 31836 INFO ? odoo: Odoo version 18.0 
+2025-07-28 22:57:53,904 31836 INFO ? odoo: Using configuration file at C:\Users\Dev\Documents\AnkurProjects\odoo\odoo.conf 
+2025-07-28 22:57:53,905 31836 INFO ? odoo: addons paths: ['C:\\Users\\Dev\\Documents\\AnkurProjects\\odoo\\odoo\\addons', 'c:\\users\\dev\\appdata\\local\\openerp s.a\\odoo\\addons\\18.0', 'c:\\users\\dev\\documents\\ankurprojects\\odoo\\addons', 'c:\\users\\dev\\documents\\ankurprojects\\odoo\\odoo\\addons'] 
+2025-07-28 22:57:53,905 31836 INFO ? odoo: database: odoo_user@localhost:5432 
+2025-07-28 22:57:54,317 31836 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltopdf to print a pdf version of the reports. 
+2025-07-28 22:57:54,334 31836 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltoimage to generate images from html. 
+2025-07-28 22:57:54,913 31836 INFO ? odoo.service.server: HTTP service (werkzeug) running on Tomi:8069 
+2025-07-28 22:57:55,057 31836 INFO ats_db odoo.modules.loading: loading 1 modules... 
+2025-07-28 22:57:55,075 31836 INFO ats_db odoo.modules.loading: 1 modules loaded in 0.02s, 0 queries (+0 extra) 
+2025-07-28 22:57:55,120 31836 INFO ats_db odoo.modules.loading: updating modules list 
+2025-07-28 22:57:55,126 31836 INFO ats_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via n/a 
+2025-07-28 22:57:55,151 31836 WARNING ats_db odoo.modules.module: Missing `license` key in manifest for 'ats_interview', defaulting to LGPL-3 
+2025-07-28 22:57:55,172 31836 WARNING ats_db odoo.modules.module: Missing `license` key in manifest for 'ats_test', defaulting to LGPL-3 
+2025-07-28 22:57:55,533 31836 WARNING ats_db odoo.modules.loading: invalid module names, ignored: ats_offer 
+2025-07-28 22:57:55,539 31836 INFO ats_db odoo.addons.base.models.ir_module: ALLOW access to module.button_upgrade on ['ATS Interview', 'ATS Test'] to user __system__ #1 via n/a 
+2025-07-28 22:57:55,539 31836 INFO ats_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on ['ATS Interview', 'ATS Test'] to user __system__ #1 via n/a 
+2025-07-28 22:57:55,739 31836 INFO ats_db odoo.addons.base.models.ir_module: ALLOW access to module.button_install on [] to user __system__ #1 via n/a 
+2025-07-28 22:57:55,798 31836 INFO ats_db odoo.modules.loading: loading 43 modules... 
+2025-07-28 22:57:55,809 31836 WARNING ats_db odoo.addons.attachment_indexation.models.ir_attachment: Attachment indexation of PDF documents is unavailable because the 'pdfminer' Python library cannot be found on the system. You may install it from https://pypi.org/project/pdfminer.six/ (e.g. `pip3 install pdfminer.six`) 
+2025-07-28 22:57:57,313 31836 INFO ats_db odoo.modules.loading: Loading module ats_interview (42/43) 
+2025-07-28 22:57:57,644 31836 INFO ats_db odoo.modules.registry: module ats_interview: creating or updating database tables 
+2025-07-28 22:57:57,780 31836 INFO ats_db odoo.modules.loading: loading ats_interview/security/ir.model.access.csv 
+2025-07-28 22:57:57,807 31836 INFO ats_db odoo.modules.loading: loading ats_interview/views/ats_interview_views.xml 
+2025-07-28 22:57:57,912 31836 INFO ats_db odoo.modules.loading: Module ats_interview loaded in 0.60s, 89 queries (+89 other) 
+2025-07-28 22:57:57,912 31836 INFO ats_db odoo.modules.loading: Loading module ats_test (43/43) 
+2025-07-28 22:57:58,163 31836 INFO ats_db odoo.modules.registry: module ats_test: creating or updating database tables 
+2025-07-28 22:57:58,226 31836 INFO ats_db odoo.modules.loading: loading ats_test/security/ir.model.access.csv 
+2025-07-28 22:57:58,250 31836 INFO ats_db odoo.modules.loading: loading ats_test/views/ats_test_views.xml 
+2025-07-28 22:57:58,330 31836 INFO ats_db odoo.modules.loading: Module ats_test loaded in 0.42s, 92 queries (+92 other) 
+2025-07-28 22:57:58,330 31836 INFO ats_db odoo.modules.loading: 43 modules loaded in 2.53s, 181 queries (+181 extra) 
+2025-07-28 22:57:59,563 31836 INFO ats_db odoo.modules.loading: Modules loaded. 
+2025-07-28 22:57:59,572 31836 INFO ats_db odoo.modules.registry: Registry changed, signaling through the database 
+2025-07-28 22:57:59,572 31836 INFO ats_db odoo.modules.registry: Registry loaded in 4.652s 
+2025-07-28 22:58:59,889 31836 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Base: Auto-vacuum internal data' (1) starting 
+2025-07-28 22:58:59,941 31836 INFO ats_db odoo.addons.base.models.ir_attachment: filestore gc 0 checked, 0 removed 
+2025-07-28 22:59:00,035 31836 INFO ats_db odoo.addons.base.models.res_users: GC'd 0 user log entries 
+2025-07-28 22:59:00,053 31836 INFO ats_db odoo.addons.base.models.res_users: GC 'res.users.apikeys' delete 0 entries 
+2025-07-28 22:59:00,064 31836 INFO ats_db odoo.addons.base.models.res_device: GC device logs delete 0 entries 
+2025-07-28 22:59:00,064 31836 INFO ats_db odoo.addons.base.models.res_device: GC device logs delete 0 entries 
+2025-07-28 22:59:00,087 31836 INFO ats_db odoo.addons.base.models.res_users: GC 'auth_totp.device' delete 0 entries 
+2025-07-28 22:59:00,235 31836 INFO ats_db odoo.addons.sms.models.sms_sms: GC'd 0 sms marked for deletion 
+2025-07-28 22:59:00,316 31836 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Base: Auto-vacuum internal data' (1) done in 0.427s 
+2025-07-28 22:59:00,316 31836 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Base: Auto-vacuum internal data' (1) processed 0 records, 0 records remaining 
+2025-07-28 22:59:00,325 31836 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Base: Auto-vacuum internal data' (1) completed 
+2025-07-28 23:02:10,404 31836 INFO ats_db odoo.service.server: Initiating shutdown 
+2025-07-28 23:02:10,404 31836 INFO ats_db odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+2025-07-28 23:02:10,456 31836 INFO ats_db odoo.sql_db: ConnectionPool(read/write;used=0/count=0/max=64): Closed 5 connections  

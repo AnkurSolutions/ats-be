@@ -1,0 +1,45 @@
+<odoo>
+    <record id="view_ats_interview_form" model="ir.ui.view">
+        <field name="name">ats.interview.form</field>
+        <field name="model">ats.interview</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Interview">
+                <group>
+                    <field name="name"/>
+                    <field name="applicant_id"/>
+                    <field name="interviewer_id"/>
+                    <field name="scheduled_at"/>
+                    <field name="location"/>
+                    <field name="status"/>
+                    <field name="rating"/>
+                    <field name="feedback"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ats_interview_tree" model="ir.ui.view">
+        <field name="name">ats.interview.list</field>
+        <field name="model">ats.interview</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="applicant_id"/>
+                <field name="scheduled_at"/>
+                <field name="status"/>
+                <field name="rating"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_ats_interview" model="ir.actions.act_window">
+        <field name="name">Interviews</field>
+        <field name="res_model">ats.interview</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_ats_interview_root" name="ATS Interviews"/>
+    <menuitem id="menu_ats_interview" name="Interviews" parent="menu_ats_interview_root" action="action_ats_interview"/>
+</odoo>

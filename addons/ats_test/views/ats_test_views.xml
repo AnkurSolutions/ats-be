@@ -1,0 +1,45 @@
+<odoo>
+    <record id="view_ats_test_form" model="ir.ui.view">
+        <field name="name">ats.test.form</field>
+        <field name="model">ats.test</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Test">
+                <group>
+                    <field name="name"/>
+                    <field name="applicant_id"/>
+                    <field name="assigned_at"/>
+                    <field name="deadline"/>
+                    <field name="submission_url"/>
+                    <field name="status"/>
+                    <field name="score"/>
+                    <field name="feedback"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ats_test_tree" model="ir.ui.view">
+        <field name="name">ats.test.list</field>
+        <field name="model">ats.test</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="applicant_id"/>
+                <field name="assigned_at"/>
+                <field name="status"/>
+                <field name="score"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_ats_test" model="ir.actions.act_window">
+        <field name="name">Tests</field>
+        <field name="res_model">ats.test</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_ats_test_root" name="ATS Tests"/>
+    <menuitem id="menu_ats_test" name="Tests" parent="menu_ats_test_root" action="action_ats_test"/>
+</odoo>
