@@ -3,6 +3,9 @@ import odoo.tools.config
 from fastapi import FastAPI, Depends
 from odoo.modules.registry import Registry
 
+# routers import
+from ats.api.v1 import users, jobs, applications, interviews, tests, offers, auth
+
 import os
 from dotenv import load_dotenv
 
@@ -20,9 +23,6 @@ app = FastAPI(title="ATS API")
 
 # Initialize registry (the ORM environment factory) once at startup
 registry = Registry(odoo.tools.config["db_name"])
-
-# Your routers import
-from ats.api.v1 import users, jobs, applications, interviews, tests, offers, auth
 
 # Dependency to get a new Odoo env per request
 def get_env():

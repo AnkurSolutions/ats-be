@@ -32,7 +32,7 @@ async def run_in_thread(func, *args, **kwargs):
 @router.post("/", response_model=UserOut, summary="Create a new user")
 async def create_new_user(
     user_data: UserCreate,
-    current_user = Depends(require_role("admin"))  # Only admin
+    current_user = Depends(require_role("admin", "hr"))  # Only admin
 ):
     """
     Create a new user in the system.

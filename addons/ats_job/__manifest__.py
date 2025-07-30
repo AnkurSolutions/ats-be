@@ -1,0 +1,13 @@
+{
+    "name": "ATS Job",
+    "version": "1.0",
+    "summary": "Custom ATS job posting and approval workflow",
+    "author": "Your Company",
+    "depends": ["base", "hr"],
+    'data': [
+        'security/ir.model.access.csv',
+    ],
+    "installable": True,
+    "auto_install": False,
+    "application": True
+}
