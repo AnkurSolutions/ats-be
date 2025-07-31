@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ats_job_user,access.ats.job.user,model_ats_job,base.group_user,1,1,1,1
+access_ats_job_approval_user,access.ats.job.approval.user,model_ats_job_approval,base.group_user,1,1,1,1
