@@ -1,62 +1,63 @@
+from datetime import datetime
 from odoo.api import Environment
 
-def get_application_by_id(env: Environment, app_id: int):
-    return env['hr.applicant'].browse(app_id)
+class ApplicationService:
+    def __init__(self, env: Environment):
+        self.env = env
+        self.AtsApplication = env['ats.application']
+        self.AtsApplicantProfile = env['ats.applicant.profile']
+        self.AtsJob = env['ats.job']
 
-def list_applications(env: Environment, job_id=None, email=None, name=None, user_id=None, limit=100, offset=0):
-    domain = []
-    if job_id:
-        domain.append(('job_id', '=', job_id))
-    if email:
-        domain.append(('email_from', 'ilike', email))
-    if name:
-        domain.append(('name', 'ilike', name))
-    if user_id:
-        domain.append(('user_id', '=', user_id))
+    def get_profile(self, user_id: int):
+        return self.AtsApplicantProfile.search([('user_id', '=', user_id)], limit=1)
 
-    return env['hr.applicant'].search(domain, limit=limit, offset=offset)
+    def create_application(self, *, user_id: int, job_id: int):
+        profile = self.get_profile(user_id=user_id)
+        if not profile:
+            raise ValueError("Applicant profile does not exist")
+        existing = self.AtsApplication.search([
+            ('job_id', '=', job_id),
+            ('applicant_id', '=', profile.id)
+        ], limit=1)
+        if existing:
+            return existing
+        vals = {
+            'job_id': job_id,
+            'applicant_id': profile.id,
+            'submitted_at': datetime.now(),
+            'status': 'applied',
+        }
+        return self.AtsApplication.create(vals)
 
-def create_application(env: Environment, data: dict):
-    values = {
-        'name': data['name'],
-        'email_from': data.get('email'),
-        'job_id': data['job_id'],
-        'partner_name': data.get('partner_name'),
-        'description': data.get('description'),
-        'source_id': data.get('source_id'),
-        'user_id': data.get('user_id'),
-    }
-    return env['hr.applicant'].create(values)
+    def get_applications(self, *, user_id: int):
+        profile = self.get_profile(user_id=user_id)
+        if not profile:
+            return self.AtsApplication.browse()
+        return self.AtsApplication.search([('applicant_id', '=', profile.id)])
 
-def update_application(env: Environment, app_id: int, data: dict):
-    app = get_application_by_id(env, app_id)
-    if not app.exists():
-        return None
-    values = {}
-    if 'name' in data: values['name'] = data['name']
-    if 'email' in data: values['email_from'] = data['email']
-    if 'job_id' in data: values['job_id'] = data['job_id']
-    if 'partner_name' in data: values['partner_name'] = data['partner_name']
-    if 'description' in data: values['description'] = data['description']
-    if 'source_id' in data: values['source_id'] = data['source_id']
-    if 'user_id' in data: values['user_id'] = data['user_id']
+    def get_application(self, *, application_id: int):
+        return self.AtsApplication.browse(application_id)
 
-    app.write(values)
-    return app
+    def update_application_status(self, *, application_id: int, status: str):
+        application = self.get_application(application_id=application_id)
+        if not application.exists():
+            raise ValueError("Application does not exist")
+        application.status = status
+        return application
 
-def delete_application(env: Environment, app_id: int):
-    app = get_application_by_id(env, app_id)
-    if not app.exists():
+    def delete_application(self, *, application_id: int):
+        application = self.get_application(application_id=application_id)
+        if application.exists():
+            application.unlink()
+            return True
         return False
-    app.unlink()
-    return True
 
-def submit_public_application(env: Environment, job_id: int, data: dict):
-    values = {
-        'name': data['name'],
-        'email_from': data['email'],
-        'job_id': job_id,
-        'description': f"Resume: {data.get('resume_url')}\n\nCover Letter:\n{data.get('cover_letter') or ''}",
-        # Optional: assign to a default stage or user
-    }
-    return env['hr.applicant'].create(values)
+    def search_jobs(self, *, keywords: str = None, location: str = None, job_type: str = None):
+        domain = [('status', '=', 'published')]
+        if keywords:
+            domain += ['|', ('name', 'ilike', keywords), ('description', 'ilike', keywords)]
+        if location:
+            domain.append(('location', 'ilike', location))
+        if job_type:
+            domain.append(('job_type', '=', job_type))
+        return self.AtsJob.search(domain)
