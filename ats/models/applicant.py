@@ -1,4 +1,4 @@
-from pydantic import BaseModel, HttpUrl, Field
+from pydantic import BaseModel, EmailStr, HttpUrl, Field
 from typing import List, Optional
 
 # ----- Skill Schemas -----
@@ -7,27 +7,33 @@ class SkillBase(BaseModel):
     name: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class SkillCreate(BaseModel):
     name: str
 
 # ----- Applicant Profile Schemas -----
+# Better model structure
 class ApplicantProfileBase(BaseModel):
-    resume_url: Optional[HttpUrl] = Field(None, description="URL to resume")
-    skill_ids: Optional[List[int]] = Field(default_factory=list, description="Skill IDs")
-    experience_years: Optional[int] = Field(0, ge=0, description="Years of experience")
-    status: Optional[str] = Field("active", description="Profile status")
+    resume_url: Optional[str] = None
+    skill_ids: Optional[List[int]] = []
+    experience_years: int = 0
+    status: str = "active"
 
-class ApplicantProfileCreate(ApplicantProfileBase):
-    pass
-
-class ApplicantProfileUpdate(ApplicantProfileBase):
+class ApplicantProfileUpdate(BaseModel):
+    resume_url: Optional[str] = Field(None)
+    skill_ids: Optional[List[int]] = Field(None)
+    experience_years: Optional[int] = Field(None)
     status: Optional[str] = Field(None)
 
 class ApplicantProfileResponse(ApplicantProfileBase):
     id: int
     user_id: int
+
+class ApplicantOnboardRequest(ApplicantProfileBase):
+    name: str
+    email: EmailStr
+    password: str
 
     class Config:
         from_attributes = True

@@ -24,21 +24,11 @@ def create_user(env: Environment, data: dict):
         'groups_id': [(6, 0, [resolve_group_id(env, data['role'])])],
         'password': data['password'],
     }
-    
-    # Set is_applicant flag for applicants
+
     if data['role'] == 'applicant':
-        user_vals['is_applicant'] = True
-        
+        user_vals['is_applicant'] = True  # or any other applicant-specific flag
+
     user = env['res.users'].create(user_vals)
-    
-    # Create applicant profile if it's an applicant
-    if data['role'] == 'applicant':
-        env['ats.applicant.profile'].create({
-            'user_id': user.id,
-            'experience_years': 0,
-            'status': 'active',
-        })
-    
     return user
 
 def update_user(env: Environment, user_id: int, data: dict):
