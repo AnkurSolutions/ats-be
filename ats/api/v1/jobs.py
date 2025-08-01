@@ -1,4 +1,3 @@
-import asyncio
 from fastapi import APIRouter, Depends, HTTPException, status
 from typing import List, Optional
 
@@ -10,20 +9,11 @@ from ats.models.job import (
     ApprovalStatus,
 )
 from ats.services.job_service import JobService
-from fastapi.security import HTTPAuthorizationCredentials
+from ats.core.utils import run_in_thread
 from ats.security.auth_dependency import get_current_user, require_role, get_odoo_env_dependency_async
 from odoo.exceptions import ValidationError
 
 router = APIRouter(prefix="/v1/jobs", tags=["Jobs"])
-
-# Thread pool for running sync Odoo service operations
-from concurrent.futures import ThreadPoolExecutor
-executor = ThreadPoolExecutor(max_workers=10)
-
-async def run_in_thread(func, *args, **kwargs):
-    """Helper to run sync functions in thread pool"""
-    loop = asyncio.get_event_loop()
-    return await loop.run_in_executor(executor, func, *args, **kwargs)
 
 @router.post("/", response_model=JobOut, status_code=status.HTTP_201_CREATED, summary="Create a new job posting")
 async def create_job(

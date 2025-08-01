@@ -1,78 +1,91 @@
-from fastapi import APIRouter, HTTPException, Query
-from typing import Optional
-from ats.models.application import ApplicationCreate, ApplicationUpdate, ApplicationOut, PublicApplication
-from ats.services.application_service import (
-    create_application, get_application_by_id, update_application, delete_application, list_applications,
-    submit_public_application
+from fastapi import APIRouter, Depends, status, HTTPException
+from ats.models.application import (
+    ApplicationCreate, ApplicationResponse, ApplicationUpdate
 )
-from ats.db.session import get_odoo_env_async
+from ats.services.applicant_service import ApplicantService
+from ats.core.utils import run_in_thread
+from ats.security.auth_dependency import require_role, get_current_user, get_odoo_env_dependency_async
+from odoo.exceptions import ValidationError
 
-router = APIRouter(prefix="/applications", tags=["Applications"])
+router = APIRouter(prefix="/v1/applications", tags=["Applications"])
 
-@router.post("/", response_model=ApplicationOut)
-async def create_app(payload: ApplicationCreate):
-    async with get_odoo_env_async() as env:
-        app = create_application(env, payload.model_dump())
-        return app.read(['id', 'name', 'email_from', 'job_id', 'partner_name', 'description', 'create_date'])[0]
-
-@router.get("/", response_model=list[ApplicationOut])
-async def list_all(
-    job_id: Optional[int] = Query(None),
-    email: Optional[str] = Query(None),
-    name: Optional[str] = Query(None),
-    user_id: Optional[int] = Query(None),
-    limit: int = Query(100),
-    offset: int = Query(0)
+@router.post(
+    "/", 
+    response_model=ApplicationResponse, 
+    status_code=status.HTTP_201_CREATED,
+    summary="Submit a new job application"
+)
+async def create_application(
+    application_in: ApplicationCreate,
+    current_user=Depends(require_role("applicant")),
+    env=Depends(get_odoo_env_dependency_async),
 ):
-    async with get_odoo_env_async() as env:
-        apps = list_applications(
-            env,
-            job_id=job_id,
-            email=email,
-            name=name,
-            user_id=user_id,
-            limit=limit,
-            offset=offset
-        )
-        return apps.read([
-            'id', 'name', 'email_from', 'job_id',
-            'partner_name', 'description', 'create_date'
-        ])
+    async def _create():
+        service = ApplicantService(env)
+        return service.create_application(user_id=current_user.id, job_id=application_in.job_id)
+    return await run_in_thread(_create)
 
-@router.get("/{app_id}", response_model=ApplicationOut)
-async def get_app(app_id: int):
-    async with get_odoo_env_async() as env:
-        app = get_application_by_id(env, app_id)
-        if not app.exists():
+@router.get(
+    "/", 
+    response_model=list[ApplicationResponse], 
+    status_code=status.HTTP_200_OK,
+    summary="Get all job applications for current user"
+)
+async def get_applications(
+    current_user=Depends(require_role("applicant")),
+    env=Depends(get_odoo_env_dependency_async),
+):
+    async def _list():
+        service = ApplicantService(env)
+        return service.get_applications(user_id=current_user.id)
+    return await run_in_thread(_list)
+
+@router.get(
+    "/{application_id}",
+    response_model=ApplicationResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Get a single job application by ID"
+)
+async def get_application(
+    application_id: int,
+    current_user=Depends(require_role("applicant")),
+    env=Depends(get_odoo_env_dependency_async),
+):
+    async def _get():
+        service = ApplicantService(env)
+        return service.get_application(application_id=application_id)
+    return await run_in_thread(_get)
+
+@router.put(
+    "/{application_id}",
+    response_model=ApplicationResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Update application status"
+)
+async def update_application_status(
+    application_id: int,
+    status_in: ApplicationUpdate,
+    current_user=Depends(require_role("recruiter", "admin")),
+    env=Depends(get_odoo_env_dependency_async),
+):
+    async def _update():
+        service = ApplicantService(env)
+        return service.update_application_status(application_id=application_id, status=status_in.status)
+    return await run_in_thread(_update)
+
+@router.delete(
+    "/{application_id}",
+    status_code=status.HTTP_204_NO_CONTENT,
+    summary="Withdraw or delete an application"
+)
+async def delete_application(
+    application_id: int,
+    current_user=Depends(require_role("applicant")),
+    env=Depends(get_odoo_env_dependency_async),
+):
+    async def _delete():
+        service = ApplicantService(env)
+        result = service.delete_application(application_id=application_id)
+        if not result:
             raise HTTPException(status_code=404, detail="Application not found")
-        return app.read(['id', 'name', 'email_from', 'job_id', 'partner_name', 'description', 'create_date'])[0]
-
-@router.put("/{app_id}", response_model=ApplicationOut)
-async def update_app(app_id: int, payload: ApplicationUpdate):
-    async with get_odoo_env_async() as env:
-        updated = update_application(env, app_id, payload.model_dump(exclude_unset=True))
-        if not updated:
-            raise HTTPException(status_code=404, detail="Application not found")
-        return updated.read(['id', 'name', 'email_from', 'job_id', 'partner_name', 'description', 'create_date'])[0]
-
-@router.delete("/{app_id}")
-async def delete_app(app_id: int):
-    async with get_odoo_env_async() as env:
-        deleted = delete_application(env, app_id)
-        if not deleted:
-            raise HTTPException(status_code=404, detail="Application not found")
-        return {"status": "deleted"}
-
-@router.post("/jobs/{job_id}/apply")
-async def apply_to_job(job_id: int, payload: PublicApplication):
-    async with get_odoo_env_async() as env:
-        job = env['hr.job'].browse(job_id)
-        if not job.exists():
-            raise HTTPException(status_code=404, detail="Job not found")
-
-        application = submit_public_application(env, job_id, payload.dict())
-        return {
-            "status": "success",
-            "application_id": application.id,
-            "message": "Application submitted successfully."
-        }
+    await run_in_thread(_delete)

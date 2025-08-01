@@ -1,5 +1,4 @@
 import logging
-import asyncio
 from fastapi import APIRouter, HTTPException, Depends
 from ats.models.user import UserCreate, UserOut, UserUpdate
 from ats.services.user_service import (
@@ -7,7 +6,7 @@ from ats.services.user_service import (
 )
 from ats.db.session import get_odoo_env_dependency_async
 from ats.security.auth_dependency import require_role
-from concurrent.futures import ThreadPoolExecutor
+from ats.core.utils import run_in_thread
 
 from odoo.api import Environment
 
@@ -17,17 +16,9 @@ logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/v1/users", tags=["Users"])
 
-# Thread pool for running sync Odoo service operations
-executor = ThreadPoolExecutor(max_workers=10)
-
 async def get_env_with_cleanup():
     """Helper to get Odoo environment with proper cleanup - Async version"""
     return Depends(get_odoo_env_dependency_async)
-
-async def run_in_thread(func, *args, **kwargs):
-    """Helper to run sync functions in thread pool"""
-    loop = asyncio.get_event_loop()
-    return await loop.run_in_executor(executor, func, *args, **kwargs)
 
 @router.post("/", response_model=UserOut, summary="Create a new user")
 async def create_new_user(

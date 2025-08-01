@@ -4,7 +4,7 @@ from fastapi import FastAPI, Depends
 from odoo.modules.registry import Registry
 
 # routers import
-from ats.api.v1 import users, jobs, applications, interviews, tests, offers, auth
+from ats.api.v1 import users, jobs, applications, interviews, tests, offers, auth, applicants, skills
 
 import os
 from dotenv import load_dotenv
@@ -36,7 +36,9 @@ def get_env():
 app.include_router(users.router, dependencies=[Depends(get_env)])
 app.include_router(jobs.router, dependencies=[Depends(get_env)])
 app.include_router(applications.router, dependencies=[Depends(get_env)])
-app.include_router(interviews.router, dependencies=[Depends(get_env)])
+app.include_router(applicants.router, dependencies=[Depends(get_env)])
+app.include_router(skills.router, dependencies=[Depends(get_env)])
+#app.include_router(interviews.router, dependencies=[Depends(get_env)])
 app.include_router(tests.router, dependencies=[Depends(get_env)])
 app.include_router(offers.router, dependencies=[Depends(get_env)])
 app.include_router(auth.router, dependencies=[Depends(get_env)])

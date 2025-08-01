@@ -8,6 +8,7 @@ class UserRole(str, Enum):
     RECRUITER = "recruiter"
     INTERVIEWER = "interviewer"
     ADMIN = "admin"
+    APPLICANT = "applicant"
 
 class UserBase(BaseModel):
     name: str

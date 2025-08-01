@@ -1,37 +1,37 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, Field, field_validator
 from typing import Optional
 from datetime import datetime
 
+# ----- Application Schemas -----
 class ApplicationBase(BaseModel):
-    name: str                      # Applicant name
-    email: Optional[EmailStr] = None
-    job_id: int                    # Required link to job
-    partner_name: Optional[str] = None
-    description: Optional[str] = None
-    source_id: Optional[int] = None   # Source (LinkedIn, etc.)
-    user_id: Optional[int] = None     # Recruiter assigned
+    job_id: int
 
 class ApplicationCreate(ApplicationBase):
     pass
 
 class ApplicationUpdate(BaseModel):
-    name: Optional[str] = None
-    email: Optional[EmailStr] = None
-    job_id: Optional[int] = None
-    partner_name: Optional[str] = None
-    description: Optional[str] = None
-    source_id: Optional[int] = None
-    user_id: Optional[int] = None
+    status: Optional[str] = Field(None, description="Status e.g., applied, shortlisted, rejected")
 
-class ApplicationOut(ApplicationBase):
+    @field_validator('status')
+    def status_must_be_valid(cls, v):
+        allowed = {'applied', 'shortlisted', 'rejected', 'interview_scheduled', 'offered', 'hired'}
+        if v is not None and v not in allowed:
+            raise ValueError(f'Status must be one of {allowed}')
+        return v
+
+class ApplicationResponse(BaseModel):
     id: int
-    created_at: Optional[datetime] = None
+    job_id: int
+    applicant_id: int
+    submitted_at: datetime
+    status: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True  # Allows Odoo model serialization
+        use_enum_values = True
 
-class PublicApplication(BaseModel):
-    name: str
-    email: EmailStr
-    cover_letter: Optional[str] = None
-    resume_url: Optional[str] = None   # stored in `description` for now
+# ----- Job Search Filter Schema -----
+class JobSearchFilters(BaseModel):
+    keywords: Optional[str] = Field(None, description="Search keywords")
+    location: Optional[str] = Field(None, description="Job location filter")
+    job_type: Optional[str] = Field(None, description="Job type filter")
