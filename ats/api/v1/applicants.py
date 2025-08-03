@@ -49,7 +49,7 @@ async def get_profile(current_user: UserOut = Depends(require_role("applicant"))
 @router.post("/onboard", response_model=ApplicantProfileResponse, status_code=status.HTTP_201_CREATED)
 async def onboard_applicant(
     payload: ApplicantOnboardRequest,
-    current_user: UserOut = Depends(require_role("admin", "hr", "applicant")),
+    current_user: UserOut = Depends(require_role("applicant")),
 ):
     env, cr = await get_odoo_env_dependency_async()
     service = ApplicantService(env)
@@ -57,9 +57,7 @@ async def onboard_applicant(
     try:
         profile = await run_in_thread(
             service.onboard_applicant,
-            name=payload.name,
-            email=payload.email,
-            password=payload.password,
+            user=current_user,
             resume_url=payload.resume_url,
             skill_ids=payload.skill_ids,
             experience_years=payload.experience_years,

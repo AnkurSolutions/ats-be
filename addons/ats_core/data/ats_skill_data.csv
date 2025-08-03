@@ -1,0 +1,24 @@
+model: ats.skill
+id,name
+ats_skill_python,Python
+ats_skill_django,Django
+ats_skill_fastapi,FastAPI
+ats_skill_javascript,JavaScript
+ats_skill_vuejs,Vue.js
+ats_skill_reactjs,React.js
+ats_skill_sql,SQL
+ats_skill_postgresql,PostgreSQL
+ats_skill_git,GIT
+ats_skill_linux,Linux
+ats_skill_docker,Docker
+ats_skill_kubernetes,Kubernetes
+ats_skill_rest_api,REST API
+ats_skill_graphql,GraphQL
+ats_skill_excel,Excel
+ats_skill_data_analysis,Data Analysis
+ats_skill_ml,Machine Learning
+ats_skill_communication,Communication
+ats_skill_project_management,Project Management
+ats_skill_writing,Technical Writing
+ats_skill_ui_design,UI Design
+ats_skill_ux_design,UX Design

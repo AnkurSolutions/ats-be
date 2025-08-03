@@ -31,9 +31,7 @@ class ApplicantProfileResponse(ApplicantProfileBase):
     user_id: int
 
 class ApplicantOnboardRequest(ApplicantProfileBase):
-    name: str
-    email: EmailStr
-    password: str
+    pass
 
     class Config:
         from_attributes = True

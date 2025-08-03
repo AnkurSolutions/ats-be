@@ -1,0 +1,39 @@
+model: ats.state
+id,name,code
+ats_state_abia,Abia,AB
+ats_state_adamawa,Adamawa,AD
+ats_state_akwa_ibom,Akwa Ibom,AK
+ats_state_anambra,Anambra,AN
+ats_state_bauchi,Bauchi,BA
+ats_state_bayelsa,Bayelsa,BY
+ats_state_benue,Benue,BE
+ats_state_borno,Borno,BO
+ats_state_cross_river,Cross River,CR
+ats_state_delta,Delta,DE
+ats_state_ebonyi,Ebonyi,EB
+ats_state_edo,Edo,ED
+ats_state_ekiti,Ekiti,EK
+ats_state_enugu,Enugu,EN
+ats_state_gombe,Gombe,GO
+ats_state_imo,Imo,IM
+ats_state_jigawa,Jigawa,JI
+ats_state_kaduna,Kaduna,KD
+ats_state_kano,Kano,KN
+ats_state_katsina,Katsina,KT
+ats_state_kebbi,Kebbi,KE
+ats_state_kogi,Kogi,KO
+ats_state_kwara,Kwara,KW
+ats_state_lagos,Lagos,LA
+ats_state_nasarawa,Nasarawa,NA
+ats_state_niger,Niger,NI
+ats_state_ogun,Ogun,OG
+ats_state_ondo,Ondo,ON
+ats_state_osun,Osun,OS
+ats_state_oyo,Oyo,OYO
+ats_state_plateau,Plateau,PL
+ats_state_rivers,Rivers,RI
+ats_state_sokoto,Sokoto,SO
+ats_state_taraba,Taraba,TA
+ats_state_yobe,Yobe,YO
+ats_state_zamfara,Zamfara,ZA
+ats_state_fct,FCT,FC

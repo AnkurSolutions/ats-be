@@ -1,0 +1,24 @@
+Exception in thread odoo.service.cron.cron0:
+Traceback (most recent call last):
+  File "C:\Users\Dev\.pyenv\pyenv-win\versions\3.11.2\Lib\threading.py", line 1038, in _bootstrap_inner
+Exception in thread odoo.service.cron.cron1:
+Traceback (most recent call last):
+  File "C:\Users\Dev\.pyenv\pyenv-win\versions\3.11.2\Lib\threading.py", line 1038, in _bootstrap_inner
+    self.run()
+    self.run()
+  File "C:\Users\Dev\.pyenv\pyenv-win\versions\3.11.2\Lib\threading.py", line 975, in run
+  File "C:\Users\Dev\.pyenv\pyenv-win\versions\3.11.2\Lib\threading.py", line 975, in run
+Exception in thread odoo.service.cron.cron0:
+Traceback (most recent call last):
+  File "C:\Users\Dev\.pyenv\pyenv-win\versions\3.11.2\Lib\threading.py", line 1038, in _bootstrap_inner
+Exception in thread odoo.service.cron.cron1:
+Traceback (most recent call last):
+  File "C:\Users\Dev\.pyenv\pyenv-win\versions\3.11.2\Lib\threading.py", line 1038, in _bootstrap_inner
+Exception in thread odoo.service.cron.cron0:
+Traceback (most recent call last):
+  File "C:\Users\Dev\.pyenv\pyenv-win\versions\3.11.2\Lib\threading.py", line 1038, in _bootstrap_inner
+Exception in thread odoo.service.cron.cron1:
+Traceback (most recent call last):
+  File "C:\Users\Dev\.pyenv\pyenv-win\versions\3.11.2\Lib\threading.py", line 1038, in _bootstrap_inner
+    self.run()
+  File "C:\Users\Dev\.pyenv\pyenv-win\versions\3.11.2\Lib\threading.py", line 975, in run

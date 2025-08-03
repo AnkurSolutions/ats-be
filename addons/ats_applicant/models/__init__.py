@@ -2,5 +2,4 @@
 
 from . import applicant_profile
 from . import application
-from . import skill
 from . import res_users_inherit

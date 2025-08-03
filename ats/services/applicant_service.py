@@ -1,45 +1,22 @@
-from ats.services.user_service import resolve_group_id
 from odoo.api import Environment
 
 
 class ApplicantService:
     def __init__(self, env: Environment):
         self.env = env
-        self.Users = env["res.users"]
         self.AtsApplicantProfile = env['ats.applicant.profile']
         self.AtsSkill = env['ats.skill']
 
     def onboard_applicant(
         self,
         *,
-        name: str,
-        email: str,
-        password: str,
+        user,
         resume_url: str = None,
         skill_ids: list[int] = None,
         experience_years: int = 0,
         status: str = 'active'
     ):
         try:
-            # Check if user exists by login/email
-            existing_users = self.Users.search([("login", "=", email)], limit=1)
-            if existing_users:
-                user = existing_users[0]
-                existing_profile = self.AtsApplicantProfile.search([("user_id", "=", user.id)], limit=1)
-                if existing_profile.exists():
-                    raise ValueError("An applicant profile already exists for this user.")
-            else:
-                group_id = resolve_group_id(self.env, "applicant")
-                user_vals = {
-                    "name": name,
-                    "login": email,
-                    "email": email,
-                    "password": password,
-                    "groups_id": [(6, 0, [group_id])],
-                    "is_applicant": True,
-                }
-                user = self.Users.create(user_vals)
-
             vals = {
                 'user_id': user.id,
                 'resume_url': resume_url,

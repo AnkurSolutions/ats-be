@@ -1,22 +1,30 @@
-2025-07-31 12:30:53,265 12852 INFO ? odoo: Odoo version 18.0 
-2025-07-31 12:30:53,265 12852 INFO ? odoo: Using configuration file at C:\Users\Dev\Documents\AnkurProjects\odoo\odoo.conf 
-2025-07-31 12:30:53,265 12852 INFO ? odoo: addons paths: ['C:\\Users\\Dev\\Documents\\AnkurProjects\\odoo\\odoo\\addons', 'c:\\users\\dev\\appdata\\local\\openerp s.a\\odoo\\addons\\18.0', 'c:\\users\\dev\\documents\\ankurprojects\\odoo\\addons', 'c:\\users\\dev\\documents\\ankurprojects\\odoo\\odoo\\addons'] 
-2025-07-31 12:30:53,265 12852 INFO ? odoo: database: odoo_user@localhost:5432 
-2025-07-31 12:30:53,865 12852 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltopdf to print a pdf version of the reports. 
-2025-07-31 12:30:53,880 12852 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltoimage to generate images from html. 
-2025-07-31 12:30:54,839 12852 INFO ? odoo.service.server: HTTP service (werkzeug) running on Tomi:8069 
-2025-07-31 12:30:55,005 12852 INFO ats_db odoo.modules.loading: loading 1 modules... 
-2025-07-31 12:30:55,016 12852 INFO ats_db odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries (+0 extra) 
-2025-07-31 12:30:55,059 12852 INFO ats_db odoo.modules.loading: updating modules list 
-2025-07-31 12:30:55,071 12852 INFO ats_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via n/a 
-2025-07-31 12:30:55,084 12852 WARNING ats_db odoo.modules.module: Missing `license` key in manifest for 'ats_applicant', defaulting to LGPL-3 
-2025-07-31 12:30:55,147 12852 WARNING ats_db odoo.modules.module: Missing `license` key in manifest for 'ats_interview', defaulting to LGPL-3 
-2025-07-31 12:30:55,171 12852 WARNING ats_db odoo.modules.module: Missing `license` key in manifest for 'ats_job', defaulting to LGPL-3 
-2025-07-31 12:30:55,171 12852 WARNING ats_db odoo.modules.module: Missing `license` key in manifest for 'ats_test', defaulting to LGPL-3 
-2025-07-31 12:30:55,580 12852 INFO ats_db odoo.addons.base.models.ir_module: ALLOW access to module.button_install on ['ATS Applicant Portal'] to user __system__ #1 via n/a 
-2025-07-31 12:30:55,648 12852 INFO ats_db odoo.modules.loading: loading 44 modules... 
-2025-07-31 12:30:55,664 12852 WARNING ats_db odoo.addons.attachment_indexation.models.ir_attachment: Attachment indexation of PDF documents is unavailable because the 'pdfminer' Python library cannot be found on the system. You may install it from https://pypi.org/project/pdfminer.six/ (e.g. `pip3 install pdfminer.six`) 
-2025-07-31 12:30:57,482 12852 WARNING ats_db py.warnings: C:\Users\Dev\Documents\AnkurProjects\odoo\odoo\api.py:482: DeprecationWarning: The model odoo.addons.ats_job.models.job is not overriding the create method in batch
+2025-08-03 12:02:22,342 17052 INFO ? odoo: Odoo version 18.0 
+2025-08-03 12:02:22,343 17052 INFO ? odoo: Using configuration file at C:\Users\Dev\Documents\AnkurProjects\odoo\odoo.conf 
+2025-08-03 12:02:22,343 17052 INFO ? odoo: addons paths: ['C:\\Users\\Dev\\Documents\\AnkurProjects\\odoo\\odoo\\addons', 'c:\\users\\dev\\appdata\\local\\openerp s.a\\odoo\\addons\\18.0', 'c:\\users\\dev\\documents\\ankurprojects\\odoo\\addons', 'c:\\users\\dev\\documents\\ankurprojects\\odoo\\odoo\\addons'] 
+2025-08-03 12:02:22,343 17052 INFO ? odoo: database: odoo_user@localhost:5432 
+2025-08-03 12:02:22,514 17052 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltopdf to print a pdf version of the reports. 
+2025-08-03 12:02:22,519 17052 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltoimage to generate images from html. 
+2025-08-03 12:02:22,862 17052 INFO ats_db odoo.modules.loading: loading 1 modules... 
+2025-08-03 12:02:22,867 17052 INFO ats_db odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries (+0 extra) 
+2025-08-03 12:02:22,884 17052 INFO ats_db odoo.modules.loading: updating modules list 
+2025-08-03 12:02:22,887 17052 INFO ats_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via n/a 
+2025-08-03 12:02:22,909 17052 WARNING ats_db odoo.modules.module: Missing `license` key in manifest for 'ats_test', defaulting to LGPL-3 
+2025-08-03 12:02:23,063 17052 INFO ats_db odoo.addons.base.models.ir_module: ALLOW access to module.button_upgrade on ['ATS Core'] to user __system__ #1 via n/a 
+2025-08-03 12:02:23,063 17052 INFO ats_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on ['ATS Core'] to user __system__ #1 via n/a 
+2025-08-03 12:02:23,172 17052 INFO ats_db odoo.addons.base.models.ir_module: ALLOW access to module.button_install on [] to user __system__ #1 via n/a 
+2025-08-03 12:02:23,191 17052 INFO ats_db odoo.modules.loading: loading 39 modules... 
+2025-08-03 12:02:23,191 17052 INFO ats_db odoo.modules.loading: Loading module ats_core (2/39) 
+2025-08-03 12:02:23,215 17052 INFO ats_db odoo.modules.registry: module ats_core: creating or updating database tables 
+2025-08-03 12:02:23,267 17052 INFO ats_db odoo.modules.loading: loading ats_core/security/ir.model.access.csv 
+2025-08-03 12:02:23,283 17052 INFO ats_db odoo.modules.loading: loading ats_core/data/ats_state_data.csv 
+2025-08-03 12:02:23,284 17052 ERROR ats_db odoo.tools.convert: Import specification does not contain 'id' and we are in init mode, Cannot continue. 
+2025-08-03 12:02:23,284 17052 INFO ats_db odoo.modules.loading: loading ats_core/data/ats_lga_lagos_data.csv 
+2025-08-03 12:02:23,284 17052 ERROR ats_db odoo.tools.convert: Import specification does not contain 'id' and we are in init mode, Cannot continue. 
+2025-08-03 12:02:23,284 17052 INFO ats_db odoo.modules.loading: loading ats_core/data/ats_skill_data.csv 
+2025-08-03 12:02:23,284 17052 ERROR ats_db odoo.tools.convert: Import specification does not contain 'id' and we are in init mode, Cannot continue. 
+2025-08-03 12:02:23,294 17052 INFO ats_db odoo.modules.loading: Module ats_core loaded in 0.10s, 77 queries (+77 other) 
+2025-08-03 12:02:23,752 17052 INFO ats_db odoo.modules.loading: Loading module ats_job (34/39) 
+2025-08-03 12:02:23,809 17052 WARNING ats_db py.warnings: C:\Users\Dev\Documents\AnkurProjects\odoo\odoo\api.py:482: DeprecationWarning: The model odoo.addons.ats_job.models.job is not overriding the create method in batch
   File "C:\Users\Dev\Documents\AnkurProjects\odoo\odoo-bin", line 8, in <module>
     odoo.cli.main()
   File "C:\Users\Dev\Documents\AnkurProjects\odoo\odoo\cli\command.py", line 66, in main
@@ -51,108 +59,25 @@
     from . import job
   File "c:\users\dev\documents\ankurprojects\odoo\addons\ats_job\models\job.py", line 3, in <module>
     class AtsJob(models.Model):
-  File "c:\users\dev\documents\ankurprojects\odoo\addons\ats_job\models\job.py", line 22, in AtsJob
+  File "c:\users\dev\documents\ankurprojects\odoo\addons\ats_job\models\job.py", line 54, in AtsJob
     @api.model
   File "C:\Users\Dev\Documents\AnkurProjects\odoo\odoo\api.py", line 429, in model
     return model_create_single(method)
   File "C:\Users\Dev\Documents\AnkurProjects\odoo\odoo\api.py", line 482, in model_create_single
     warnings.warn(
  
-2025-07-31 12:30:57,677 12852 INFO ats_db odoo.modules.loading: 44 modules loaded in 2.03s, 0 queries (+0 extra) 
-2025-07-31 12:30:57,680 12852 INFO ats_db odoo.modules.loading: loading 45 modules... 
-2025-07-31 12:30:57,680 12852 INFO ats_db odoo.modules.loading: Loading module ats_applicant (43/45) 
-2025-07-31 12:30:57,840 12852 WARNING ats_db odoo.fields: Field ats.skill.name: unknown parameter 'unique', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
-2025-07-31 12:30:57,865 12852 INFO ats_db odoo.modules.registry: module ats_applicant: creating or updating database tables 
-2025-07-31 12:30:58,449 12852 INFO ats_db odoo.modules.loading: loading ats_applicant/security/ir.model.access.csv 
-2025-07-31 12:30:58,528 12852 INFO ats_db odoo.modules.loading: Module ats_applicant loaded in 0.85s, 136 queries (+136 other) 
-2025-07-31 12:30:58,528 12852 INFO ats_db odoo.modules.loading: 45 modules loaded in 0.85s, 136 queries (+136 extra) 
-2025-07-31 12:30:58,663 12852 WARNING ats_db odoo.fields: Field ats.skill.name: unknown parameter 'unique', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
-2025-07-31 12:30:58,798 12852 WARNING ats_db odoo.fields: Field ats.skill.name: unknown parameter 'unique', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
-2025-07-31 12:30:59,894 12852 INFO ats_db odoo.modules.loading: Modules loaded. 
-2025-07-31 12:30:59,906 12852 INFO ats_db odoo.modules.registry: Registry changed, signaling through the database 
-2025-07-31 12:30:59,909 12852 INFO ats_db odoo.modules.registry: Registry loaded in 5.070s 
-2025-07-31 12:32:00,294 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Base: Auto-vacuum internal data' (1) starting 
-2025-07-31 12:32:00,380 12852 INFO ats_db odoo.addons.base.models.ir_attachment: filestore gc 1 checked, 0 removed 
-2025-07-31 12:32:00,523 12852 INFO ats_db odoo.addons.base.models.res_users: GC'd 3 user log entries 
-2025-07-31 12:32:00,540 12852 INFO ats_db odoo.addons.base.models.res_users: GC 'res.users.apikeys' delete 0 entries 
-2025-07-31 12:32:00,562 12852 INFO ats_db odoo.addons.base.models.res_device: GC device logs delete 0 entries 
-2025-07-31 12:32:00,568 12852 INFO ats_db odoo.addons.base.models.res_device: GC device logs delete 0 entries 
-2025-07-31 12:32:00,603 12852 INFO ats_db odoo.addons.base.models.res_users: GC 'auth_totp.device' delete 0 entries 
-2025-07-31 12:32:00,896 12852 INFO ats_db odoo.addons.sms.models.sms_sms: GC'd 0 sms marked for deletion 
-2025-07-31 12:32:01,015 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Base: Auto-vacuum internal data' (1) done in 0.721s 
-2025-07-31 12:32:01,015 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Base: Auto-vacuum internal data' (1) processed 0 records, 0 records remaining 
-2025-07-31 12:32:01,031 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Base: Auto-vacuum internal data' (1) completed 
-2025-07-31 12:32:01,047 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Notification: Delete Notifications older than 6 Month' (5) starting 
-2025-07-31 12:32:01,063 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Notification: Delete Notifications older than 6 Month' (5) done in 0.016s 
-2025-07-31 12:32:01,063 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Notification: Delete Notifications older than 6 Month' (5) processed 0 records, 0 records remaining 
-2025-07-31 12:32:01,078 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Notification: Delete Notifications older than 6 Month' (5) completed 
-2025-07-31 12:32:01,094 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Mail: Post scheduled messages' (7) starting 
-2025-07-31 12:32:01,094 12852 INFO ats_db odoo.addons.mail.models.mail_scheduled_message: Posting 0 scheduled messages 
-2025-07-31 12:32:01,094 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Mail: Post scheduled messages' (7) done in 0.000s 
-2025-07-31 12:32:01,094 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Mail: Post scheduled messages' (7) processed 0 records, 0 records remaining 
-2025-07-31 12:32:01,111 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Mail: Post scheduled messages' (7) completed 
-2025-07-31 12:32:01,332 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) starting 
-2025-07-31 12:32:01,338 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) done in 0.005s 
-2025-07-31 12:32:01,346 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Mail: send web push notification' (9) starting 
-2025-07-31 12:32:01,351 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) processed 0 records, 0 records remaining 
-2025-07-31 12:32:01,360 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) completed 
-2025-07-31 12:32:01,367 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Mail: send web push notification' (9) done in 0.021s 
-2025-07-31 12:32:01,377 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Mail: send web push notification' (9) processed 0 records, 0 records remaining 
-2025-07-31 12:32:01,381 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Discuss: channel member unmute' (10) starting 
-2025-07-31 12:32:01,387 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Discuss: channel member unmute' (10) done in 0.006s 
-2025-07-31 12:32:01,393 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Mail: send web push notification' (9) completed 
-2025-07-31 12:32:01,396 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Discuss: channel member unmute' (10) processed 0 records, 0 records remaining 
-2025-07-31 12:32:01,405 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Discuss: channel member unmute' (10) completed 
-2025-07-31 12:32:01,417 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Discuss: users settings unmute' (11) starting 
-2025-07-31 12:32:01,426 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Calendar: Event Reminder' (13) starting 
-2025-07-31 12:32:01,426 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Discuss: users settings unmute' (11) done in 0.009s 
-2025-07-31 12:32:01,428 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Discuss: users settings unmute' (11) processed 0 records, 0 records remaining 
-2025-07-31 12:32:01,439 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Discuss: users settings unmute' (11) completed 
-2025-07-31 12:32:01,441 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Calendar: Event Reminder' (13) done in 0.015s 
-2025-07-31 12:32:01,445 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Calendar: Event Reminder' (13) processed 0 records, 0 records remaining 
-2025-07-31 12:32:01,453 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Calendar: Event Reminder' (13) completed 
-2025-07-31 12:32:01,453 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (15) starting 
-2025-07-31 12:32:01,461 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (15) done in 0.008s 
-2025-07-31 12:32:01,467 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (15) processed 0 records, 0 records remaining 
-2025-07-31 12:32:01,472 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (15) completed 
-2025-07-31 12:32:01,474 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (16) starting 
-2025-07-31 12:32:01,485 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (16) done in 0.011s 
-2025-07-31 12:32:01,485 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Digest Emails' (17) starting 
-2025-07-31 12:32:01,500 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (16) processed 0 records, 0 records remaining 
-2025-07-31 12:32:01,502 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (16) completed 
-2025-07-31 12:32:01,533 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'HR Employee: check work permit validity' (18) starting 
-2025-07-31 12:32:01,567 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'HR Employee: check work permit validity' (18) done in 0.030s 
-2025-07-31 12:32:01,574 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'HR Employee: check work permit validity' (18) processed 0 records, 0 records remaining 
-2025-07-31 12:32:01,577 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'HR Employee: check work permit validity' (18) completed 
-2025-07-31 12:32:01,600 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'HR Contract: update state' (19) starting 
-2025-07-31 12:32:01,616 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'HR Contract: update state' (19) done in 0.017s 
-2025-07-31 12:32:01,632 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'HR Contract: update state' (19) processed 0 records, 0 records remaining 
-2025-07-31 12:32:01,648 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'HR Contract: update state' (19) completed 
-2025-07-31 12:32:01,664 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) starting 
-2025-07-31 12:32:01,929 12852 INFO ats_db odoo.addons.base.models.ir_model: Access Denied by ACLs for operation: read, uid: 14, model: hr.employee 
-2025-07-31 12:32:01,946 12852 INFO ats_db odoo.addons.base.models.ir_model: Access Denied by ACLs for operation: read, uid: 14, model: hr.employee 
-2025-07-31 12:32:01,969 12852 INFO ats_db odoo.addons.base.models.ir_model: Access Denied by ACLs for operation: read, uid: 14, model: hr.employee 
-2025-07-31 12:32:01,969 12852 INFO ats_db odoo.addons.base.models.ir_model: Access Denied by ACLs for operation: read, uid: 14, model: hr.employee 
-2025-07-31 12:32:01,995 12852 INFO ats_db odoo.addons.base.models.ir_model: Access Denied by ACLs for operation: read, uid: 14, model: hr.employee 
-2025-07-31 12:32:01,999 12852 INFO ats_db odoo.addons.base.models.ir_model: Access Denied by ACLs for operation: read, uid: 14, model: hr.employee 
-2025-07-31 12:32:02,729 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Digest Emails' (17) done in 1.244s 
-2025-07-31 12:32:02,729 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Digest Emails' (17) processed 0 records, 0 records remaining 
-2025-07-31 12:32:02,729 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Digest Emails' (17) completed 
-2025-07-31 12:32:02,759 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Users: Notify About Unregistered Users' (12) starting 
-2025-07-31 12:32:02,767 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Users: Notify About Unregistered Users' (12) done in 0.008s 
-2025-07-31 12:32:02,775 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Users: Notify About Unregistered Users' (12) processed 0 records, 0 records remaining 
-2025-07-31 12:32:02,784 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Users: Notify About Unregistered Users' (12) completed 
-2025-07-31 12:32:02,792 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (14) starting 
-2025-07-31 12:32:02,800 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (14) done in 0.008s 
-2025-07-31 12:32:02,802 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (14) processed 0 records, 0 records remaining 
-2025-07-31 12:32:02,808 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (14) completed 
-2025-07-31 12:32:02,833 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Base: Portal Users Deletion' (2) starting 
-2025-07-31 12:32:02,842 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Base: Portal Users Deletion' (2) done in 0.008s 
-2025-07-31 12:32:02,848 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Base: Portal Users Deletion' (2) processed 0 records, 0 records remaining 
-2025-07-31 12:32:02,859 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Base: Portal Users Deletion' (2) completed 
-2025-07-31 12:32:05,804 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) done in 4.140s 
-2025-07-31 12:32:05,808 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) processed 0 records, 0 records remaining 
-2025-07-31 12:32:05,819 12852 INFO ats_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) completed 
-2025-07-31 12:34:40,740 12852 INFO ats_db odoo.service.server: Initiating shutdown 
-2025-07-31 12:34:40,740 12852 INFO ats_db odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
-2025-07-31 12:34:41,178 12852 INFO ats_db odoo.sql_db: ConnectionPool(read/write;used=0/count=0/max=64): Closed 7 connections  
+2025-08-03 12:02:23,847 17052 INFO ats_db odoo.modules.registry: module ats_job: creating or updating database tables 
+2025-08-03 12:02:23,895 17052 INFO ats_db odoo.modules.loading: loading ats_job/security/ir.model.access.csv 
+2025-08-03 12:02:23,917 17052 INFO ats_db odoo.modules.loading: Module ats_job loaded in 0.17s, 56 queries (+56 other) 
+2025-08-03 12:02:24,084 17052 INFO ats_db odoo.modules.loading: Loading module ats_applicant (39/39) 
+2025-08-03 12:02:24,169 17052 INFO ats_db odoo.modules.registry: module ats_applicant: creating or updating database tables 
+2025-08-03 12:02:24,228 17052 INFO ats_db odoo.modules.loading: loading ats_applicant/security/ir.model.access.csv 
+2025-08-03 12:02:24,246 17052 INFO ats_db odoo.modules.loading: Module ats_applicant loaded in 0.16s, 83 queries (+83 other) 
+2025-08-03 12:02:24,246 17052 INFO ats_db odoo.modules.loading: 39 modules loaded in 1.06s, 216 queries (+216 extra) 
+2025-08-03 12:02:24,420 17052 INFO ats_db odoo.modules.registry: verifying fields for every extended model 
+2025-08-03 12:02:24,808 17052 INFO ats_db odoo.modules.loading: Modules loaded. 
+2025-08-03 12:02:24,812 17052 INFO ats_db odoo.modules.registry: Registry changed, signaling through the database 
+2025-08-03 12:02:24,813 17052 INFO ats_db odoo.modules.registry: Registry loaded in 2.038s 
+2025-08-03 12:02:24,814 17052 INFO ats_db odoo.service.server: Initiating shutdown 
+2025-08-03 12:02:24,814 17052 INFO ats_db odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+2025-08-03 12:02:24,815 17052 INFO ats_db odoo.sql_db: ConnectionPool(read/write;used=0/count=0/max=64): Closed 1 connections  

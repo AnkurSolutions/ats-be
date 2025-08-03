@@ -4,7 +4,10 @@ from fastapi import FastAPI, Depends
 from odoo.modules.registry import Registry
 
 # routers import
-from ats.api.v1 import users, jobs, applications, interviews, tests, offers, auth, applicants, skills
+from ats.api.v1 import (
+    users, jobs, applications, interviews, tests, offers, auth, applicants, skills,
+    departments, lgas, states
+    )
 
 import os
 from dotenv import load_dotenv
@@ -41,4 +44,7 @@ app.include_router(skills.router, dependencies=[Depends(get_env)])
 #app.include_router(interviews.router, dependencies=[Depends(get_env)])
 app.include_router(tests.router, dependencies=[Depends(get_env)])
 app.include_router(offers.router, dependencies=[Depends(get_env)])
+app.include_router(departments.router, dependencies=[Depends(get_env)])
+app.include_router(lgas.router, dependencies=[Depends(get_env)])
+app.include_router(states.router, dependencies=[Depends(get_env)])
 app.include_router(auth.router, dependencies=[Depends(get_env)])
