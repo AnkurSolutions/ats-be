@@ -11,11 +11,12 @@
     """,
     'author': 'Your Company',
     'website': 'https://yourcompany.com',
-    'depends': ['base', 'ats_job'],
+    'depends': ['base', 'ats_core', 'ats_job'],
     'data': [
         'security/ir.model.access.csv',
     ],
     'installable': True,
     'auto_install': False,
     'application': False,
+    'license': 'LGPL-3',
 }

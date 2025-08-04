@@ -8,38 +8,102 @@ from odoo.exceptions import ValidationError
 from ats.models.job import JobStatus, ApprovalStatus
 
 
+from enum import Enum
+from datetime import datetime, timedelta
+from typing import Optional, List
+
+from odoo import api, models
+from odoo.exceptions import ValidationError
+
+from ats.models.job import JobStatus, ApprovalStatus
+
+
 class JobService:
     def __init__(self, env):
         self.env = env
         self.AtsJob = env['ats.job']
         self.AtsJobApproval = env['ats.job.approval']
 
-    def create_job(self, *, title: str, description: str, created_by_id: int):
+    def create_job(
+        self,
+        *,
+        title: str,
+        description: str,
+        department_id: int,
+        lga_id: int,
+        employment_type: str,
+        application_deadline: Optional[str],
+        salary_min: Optional[float],
+        salary_max: Optional[float],
+        currency_id: Optional[int],
+        required_skill_ids: Optional[List[int]],
+        created_by_id: int
+    ):
         job_vals = {
             'name': title,
             'description': description,
             'status': JobStatus.DRAFT.value,
             'created_by': created_by_id,
+            'department_id': department_id,
+            'lga_id': lga_id,
+            'employment_type': employment_type,
+            'application_deadline': application_deadline,
+            'salary_min': salary_min,
+            'salary_max': salary_max,
+            'currency_id': currency_id,
+            'required_skill_ids': [(6, 0, required_skill_ids or [])],
             'last_status_update_at': datetime.now(),
         }
         job = self.AtsJob.create(job_vals)
         return job
 
-    def update_job(self, job_id: int, updater_id: int, title: Optional[str] = None, description: Optional[str] = None):
+    def update_job(
+        self,
+        job_id: int,
+        title: Optional[str] = None,
+        description: Optional[str] = None,
+        department_id: Optional[int] = None,
+        lga_id: Optional[int] = None,
+        employment_type: Optional[str] = None,
+        application_deadline: Optional[str] = None,
+        salary_min: Optional[float] = None,
+        salary_max: Optional[float] = None,
+        currency_id: Optional[int] = None,
+        required_skill_ids: Optional[List[int]] = None,
+    ):
         job = self.AtsJob.browse(job_id)
         if not job.exists():
             raise ValidationError(f"Job {job_id} not found")
 
-        # Only allow editing if job is in draft or approved (not published or closed)
         if job.status not in [JobStatus.DRAFT.value, JobStatus.APPROVED.value]:
             raise ValidationError(f"Job {job_id} cannot be updated in status {job.status}")
 
-        if title:
-            job.name = title
-        if description:
-            job.description = description
+        update_vals = {}
+        if title is not None:
+            update_vals['name'] = title
+        if description is not None:
+            update_vals['description'] = description
+        if department_id is not None:
+            update_vals['department_id'] = department_id
+        if lga_id is not None:
+            update_vals['lga_id'] = lga_id
+        if employment_type is not None:
+            update_vals['employment_type'] = employment_type
+        if application_deadline is not None:
+            update_vals['application_deadline'] = application_deadline
+        if salary_min is not None:
+            update_vals['salary_min'] = salary_min
+        if salary_max is not None:
+            update_vals['salary_max'] = salary_max
+        if currency_id is not None:
+            update_vals['currency_id'] = currency_id
+        if required_skill_ids is not None:
+            update_vals['required_skill_ids'] = [(6, 0, required_skill_ids)]
 
-        job.write({'last_status_update_at': datetime.now()})
+        if update_vals:
+            update_vals['last_status_update_at'] = datetime.now()
+            job.write(update_vals)
+
         return job
 
     def approve_job(self, job_id: int, approver_id: int, approve: bool, comment: Optional[str] = None):
@@ -70,56 +134,32 @@ class JobService:
         job.write({'last_status_update_at': datetime.now()})
         return job, approval
 
-    def publish_job(self, job_id: int, publisher_id: int):
+    def update_job_status(self, job_id: int, new_status: JobStatus):
         job = self.AtsJob.browse(job_id)
         if not job.exists():
             raise ValidationError(f"Job {job_id} not found")
 
-        # Only approved jobs can be published
-        if job.status != JobStatus.APPROVED.value:
-            raise ValidationError(f"Only approved jobs can be published")
+        current_status = job.status
 
-        job.status = JobStatus.PUBLISHED.value
+        valid_transitions = {
+            JobStatus.APPROVED.value: [JobStatus.PUBLISHED.value],
+            JobStatus.PUBLISHED.value: [JobStatus.CLOSED.value],
+            JobStatus.CLOSED.value: [JobStatus.PUBLISHED.value],
+            JobStatus.DRAFT.value: [JobStatus.APPROVED.value],  # no direct transitions unless via approval
+            JobStatus.ARCHIVED.value: [JobStatus.DRAFT.value, JobStatus.APPROVED.value, JobStatus.PUBLISHED.value, JobStatus.CLOSED.value],
+        }
+
+        allowed_next = valid_transitions.get(current_status, [])
+
+        if new_status == JobStatus.ARCHIVED:
+            # Archiving is always allowed (manually or auto)
+            pass
+        elif new_status.value not in allowed_next:
+            raise ValidationError(f"Invalid status transition from {current_status} to {new_status.value}")
+
+        job.status = new_status.value
         job.write({'last_status_update_at': datetime.now()})
         return job
-
-    def close_job(self, job_id: int, closer_id: int):
-        job = self.AtsJob.browse(job_id)
-        if not job.exists():
-            raise ValidationError(f"Job {job_id} not found")
-
-        # Only published or closed jobs can be closed (closed jobs can be re-opened)
-        if job.status not in [JobStatus.PUBLISHED.value, JobStatus.CLOSED.value]:
-            raise ValidationError(f"Job {job_id} cannot be closed from status {job.status}")
-
-        job.status = JobStatus.CLOSED.value
-        job.write({'last_status_update_at': datetime.now()})
-        return job
-
-    def reopen_job(self, job_id: int, reopener_id: int):
-        job = self.AtsJob.browse(job_id)
-        if not job.exists():
-            raise ValidationError(f"Job {job_id} not found")
-
-        if job.status != JobStatus.CLOSED.value:
-            raise ValidationError(f"Only closed jobs can be reopened")
-
-        job.status = JobStatus.PUBLISHED.value
-        job.write({'last_status_update_at': datetime.now()})
-        return job
-
-    def auto_archive_jobs(self):
-        """Auto-archive jobs inactive for 90+ days."""
-        cutoff_date = datetime.now() - timedelta(days=90)
-        jobs_to_archive = self.AtsJob.search([
-            ('status', 'in', [JobStatus.DRAFT.value, JobStatus.APPROVED.value, JobStatus.PUBLISHED.value, JobStatus.CLOSED.value]),
-            ('last_status_update_at', '<', cutoff_date),
-        ])
-        for job in jobs_to_archive:
-            job.status = JobStatus.ARCHIVED.value
-            job.write({'last_status_update_at': datetime.now()})
-
-        return jobs_to_archive
 
     def get_job(self, job_id: int):
         job = self.AtsJob.browse(job_id)
