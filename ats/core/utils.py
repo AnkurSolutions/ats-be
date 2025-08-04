@@ -16,7 +16,7 @@ async def run_in_thread(func, *args, **kwargs):
         # If no kwargs, use the original approach
         return await loop.run_in_executor(executor, func, *args)
     
-from typing import Dict
+from typing import Any, Dict
 
 async def serialize_job(job) -> Dict:
     return {
@@ -56,3 +56,21 @@ async def serialize_job(job) -> Dict:
         },
         "last_status_update_at": job.last_status_update_at,
     }
+
+
+def flatten_foreign_keys(record: dict[str, Any], fields: list[str]) -> dict[str, Any]:
+    """
+    Flatten foreign key fields from (id, label) to just id.
+
+    Args:
+        record (dict): The Odoo record dict from `.read()`
+        fields (list): List of fields to flatten
+
+    Returns:
+        dict: Updated record with flattened foreign key values
+    """
+    for field in fields:
+        value = record.get(field)
+        if isinstance(value, tuple):
+            record[field] = value[0]
+    return record

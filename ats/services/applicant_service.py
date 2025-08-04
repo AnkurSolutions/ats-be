@@ -18,7 +18,6 @@ class ApplicantService:
     ):
         try:
             vals = {
-                'user_id': user.id,
                 'resume_url': resume_url,
                 'experience_years': experience_years,
                 'status': status,
@@ -29,7 +28,10 @@ class ApplicantService:
                     raise ValueError("skill_ids must be a list of integers.")
                 vals['skill_ids'] = [(6, 0, skill_ids)]
 
-            return self.AtsApplicantProfile.create(vals)
+            return self.AtsApplicantProfile.create({
+                'user_id': user["id"],
+                **vals
+            })
 
         except Exception as e:
             raise ValueError(f"Failed to onboard applicant: {str(e)}")
