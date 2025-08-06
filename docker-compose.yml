@@ -1,0 +1,26 @@
+services:
+  ats-staging-be:
+    image: ats-staging-be${IMAGE_TAG}
+    container_name: ats-staging-be
+    restart: always
+    ports:
+      - 8000:8000
+    env_file:
+      - .env
+    networks:
+      - ats-network
+
+  ats-demo-be:
+    image: ats-demo-be${IMAGE_TAG}
+    container_name: ats-demo-be
+    restart: always
+    ports:
+      - 8001:8000
+    env_file:
+      - .env
+    networks:
+      - ats-network
+
+networks:
+  ats-network:
+    external: true
