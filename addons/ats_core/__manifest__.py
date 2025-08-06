@@ -9,9 +9,6 @@
     'depends': ['base'],
     'data': [
         'security/ir.model.access.csv',
-        'data/ats_state_data.csv',
-        'data/ats_lga_lagos_data.csv',
-        'data/ats_skill_data.csv',
     ],
     'installable': True,
     'auto_install': False,
