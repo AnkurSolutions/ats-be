@@ -1,9 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_ats_skill_user,access.ats.skill.user,model_ats_skill,base.group_user,1,0,0,0
-access_ats_skill_admin,access.ats.skill.admin,model_ats_skill,base.group_system,1,1,1,1
-
 access_applicant_profile_user,access.ats.applicant.profile.user,model_ats_applicant_profile,base.group_user,1,1,1,0
 access_applicant_profile_admin,access.ats.applicant.profile.admin,model_ats_applicant_profile,base.group_system,1,1,1,1
-
 access_application_user,access.ats.application.user,model_ats_application,base.group_user,1,1,1,0
 access_application_admin,access.ats.application.admin,model_ats_application,base.group_system,1,1,1,1

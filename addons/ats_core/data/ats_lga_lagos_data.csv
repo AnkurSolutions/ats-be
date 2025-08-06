@@ -1,0 +1,20 @@
+model: ats.lga
+id,name,state_id:id
+ats_lga_agege,Agege,ats_state_lagos
+ats_lga_ajeromi_ifelodun,Ajeromi-Ifelodun,ats_state_lagos
+ats_lga_alimosho,Alimosho,ats_state_lagos
+ats_lga_amuwoodofin,Amuwo-Odofin,ats_state_lagos
+ats_lga_apapa,Apapa,ats_state_lagos
+ats_lga_badagry,Badagry,ats_state_lagos
+ats_lga_epe,Epe,ats_state_lagos
+ats_lga_eti_osa,Etiosa,ats_state_lagos
+ats_lga_ifako_ijaiye,Ifako-Ijaiye,ats_state_lagos
+ats_lga_ikeja,Ikeja,ats_state_lagos
+ats_lga_ikorodu,Ikorodu,ats_state_lagos
+ats_lga_kosofe,Kosofe,ats_state_lagos
+ats_lga_lagos_island,Lagos Island,ats_state_lagos
+ats_lga_lagos_mainland,Lagos Mainland,ats_state_lagos
+ats_lga_mushin,Mushin,ats_state_lagos
+ats_lga_oshodi_isolo,Oshodi-Isolo,ats_state_lagos
+ats_lga_shomolu,Shomolu,ats_state_lagos
+ats_lga_suru_lere,Surulere,ats_state_lagos

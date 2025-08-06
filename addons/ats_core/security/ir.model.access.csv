@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ats_skill_user,access.ats.skill.user,model_ats_skill,base.group_user,1,0,0,0
+access_ats_skill_admin,access.ats.skill.admin,model_ats_skill,base.group_system,1,1,1,1
+
+access_ats_state_user,access.ats.state.user,model_ats_state,base.group_user,1,0,0,0
+access_ats_state_admin,access.ats.state.admin,model_ats_state,base.group_system,1,1,1,1
+
+access_ats_lga_user,access.ats.lga.user,model_ats_lga,base.group_user,1,0,0,0
+access_ats_lga_admin,access.ats.lga.admin,model_ats_lga,base.group_system,1,1,1,1
