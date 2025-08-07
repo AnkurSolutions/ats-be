@@ -32,4 +32,5 @@ RUN chmod +x odoo-bin
 
 EXPOSE 8000
 
-CMD ["./odoo-bin", "-c", "odoo.conf", "-d", "ats_staging"]
+ENTRYPOINT ["uvicorn"]
+CMD ["ats.main:app", "--host", "0.0.0.0", "--port", "8000"]

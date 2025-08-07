@@ -3,8 +3,12 @@ import asyncio
 from odoo.modules.registry import Registry
 from contextlib import asynccontextmanager
 from concurrent.futures import ThreadPoolExecutor
+import os
+from dotenv import load_dotenv
 
-DB_NAME = "ats_db"
+load_dotenv()
+
+DB_NAME = os.getenv("DB_NAME", "ats_db")
 DEFAULT_UID = 1  # system admin or service user
 
 # Thread pool for running sync Odoo operations

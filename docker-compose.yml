@@ -1,6 +1,10 @@
+version: "3.9"
+
 services:
   ats-staging-be:
-    image: ats-staging-be${IMAGE_TAG}
+    build:
+      context: .
+    image: ats-staging-be
     container_name: ats-staging-be
     restart: always
     ports:
@@ -11,7 +15,9 @@ services:
       - ats-network
 
   ats-demo-be:
-    image: ats-demo-be${IMAGE_TAG}
+    build:
+      context: .
+    image: ats-demo-be
     container_name: ats-demo-be
     restart: always
     ports:
