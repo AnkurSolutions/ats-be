@@ -28,7 +28,7 @@ echo ✅ STEP 2b: Installing other Odoo modules
 echo -------------------------------------
 echo [INFO] Installing other modules... >> %LOGFILE%
 python odoo-bin -c odoo.conf -d ats_db ^
- -i mail,hr,hr_recruitment,hr_contract,calendar,ats_test,ats_interview,ats_offer ^
+ -i mail,hr,hr_recruitment,hr_contract,calendar,ats_job, ats_applicant ^
  --log-level=info --without-demo=all >> %LOGFILE% 2>&1
 
 if %ERRORLEVEL% neq 0 (
