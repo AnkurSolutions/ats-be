@@ -7,6 +7,9 @@ import * as OdooEditorLib from "@web_editor/js/editor/odoo-editor/src/OdooEditor
 import { Wysiwyg } from '@web_editor/js/wysiwyg/wysiwyg';
 import options from "@web_editor/js/editor/snippets.options";
 import { TABLE_ATTRIBUTES, TABLE_STYLES } from '@web_editor/js/backend/convert_inline';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 export const COLOR_PICKER_TEMPLATE = `
     <colorpicker>

@@ -2,6 +2,9 @@
 
 import { patch } from "@web/core/utils/patch";
 import { MockServer } from "@web/../tests/helpers/mock_server";
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 patch(MockServer.prototype, {
     /**
