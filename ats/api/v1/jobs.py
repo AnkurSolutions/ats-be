@@ -116,7 +116,7 @@ async def approve_job(job_id: int, req: JobApproveRequest, current_user: UserOut
         env, cr = await get_odoo_env_dependency_async()
         job, _approval = JobService(env).approve_job(
             job_id=job_id,
-            approver_id=SUPERUSER_ID,
+            approver_id=current_user['id'],
             approve=(req.status == "approved"),
             comment=req.comment,
         )

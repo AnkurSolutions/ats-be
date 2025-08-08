@@ -2,4 +2,6 @@
 
 from . import applicant_profile
 from . import application
-from . import res_users_inherit
+from . import application_tag
+from . import applicant_comment
+from . import status_history
