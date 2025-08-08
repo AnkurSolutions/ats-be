@@ -1,5 +1,15 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_applicant_profile_user,access.ats.applicant.profile.user,model_ats_applicant_profile,base.group_user,1,1,1,0
 access_applicant_profile_admin,access.ats.applicant.profile.admin,model_ats_applicant_profile,base.group_system,1,1,1,1
+
 access_application_user,access.ats.application.user,model_ats_application,base.group_user,1,1,1,0
 access_application_admin,access.ats.application.admin,model_ats_application,base.group_system,1,1,1,1
+
+access_application_tag_user,access.ats.application.tag.user,model_ats_application_tag,base.group_user,1,0,0,0
+access_application_tag_admin,access.ats.application.tag.admin,model_ats_application_tag,base.group_system,1,1,1,1
+
+access_applicant_comment_user,access.ats.applicant.comment.user,model_ats_applicant_comment,base.group_user,1,1,1,0
+access_applicant_comment_admin,access.ats.applicant.comment.admin,model_ats_applicant_comment,base.group_system,1,1,1,1
+
+access_application_status_history_user,access.ats.application.status.history.user,model_ats_application_status_history,base.group_user,1,0,0,0
+access_application_status_history_admin,access.ats.application.status.history.admin,model_ats_application_status_history,base.group_system,1,1,1,1
