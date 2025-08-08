@@ -5,8 +5,6 @@ from ats.models.application import (
     ApplicationStatusHistory
 )
 from ats.services.application_service import ApplicationService
-from ats.services.job_service import JobService
-from ats.services.applicant_service import ApplicantService
 from ats.core.utils import build_application_response, flatten_foreign_keys, run_in_thread, serialize_job, transform_profile_data
 from ats.security.auth_dependency import require_role, get_odoo_env_dependency_async
 
